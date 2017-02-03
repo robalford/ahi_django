@@ -47,6 +47,7 @@ LOCAL_APPS = (
     # custom users app
     'alford_homes_inc.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'portfolio',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
