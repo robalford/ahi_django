@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<img src="{{ main_photo.photo.url }}" height="400" width="700">
-<br><br>
+<br>
+<h1>{{ project }}</h1>
+<br>
+<img src="{{ project.main_photo_full_size.url }}" class="img-fluid">
+<br>
 <div>
+<img src="{{ project.main_photo_thumbnail.url }}">
 {% for photo in project.photo_set.all %}
-    <img src="{{ photo.photo.url }}" height="100" width="100">
+    <img src="{{ photo.thumbnail.url }}">
 {% endfor %}
 </div>
 <br>
-<h1>{{ project }}</h1>
+
 <p>{{ project.description }}</p>
 <p><strong>Architect:</strong> {{ project.architect }}</p>
 {% if project.awards %}
