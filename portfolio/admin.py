@@ -11,14 +11,25 @@ class PhotoInline(admin.TabularInline):
     fields = (
         'image_tag',
         'photo',
-        'main_photo',
         'credit',
-        'caption',
     )
 
 
 class ProjectAdmin(admin.ModelAdmin):
+    fields = (
+        'project',
+        'slug',
+        'photo',
+        'image_tag',
+        'credit',
+        'description',
+        'architect',
+        'awards',
+    )
     prepopulated_fields = {"slug": ("project",)}
+    readonly_fields = (
+        'image_tag',
+    )
     inlines = [
         PhotoInline,
     ]

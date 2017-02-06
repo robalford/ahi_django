@@ -4,11 +4,11 @@
 <br>
 <h1>{{ project }}</h1>
 <br>
-<img src="{{ project.main_photo_full_size.url }}" class="img-fluid">
+<img src="{{ project.photo.url }}" class="img-fluid">
 <br>
 <div>
-<img src="{{ project.main_photo_thumbnail.url }}">
-{% for photo in project.photo_set.all %}
+<img src="{{ project.thumbnail.url }}">
+{% for photo in project.photos.all %}
     <img src="{{ photo.thumbnail.url }}">
 {% endfor %}
 </div>
@@ -20,3 +20,5 @@
     <p><strong>Awards:</strong> {{ project.awards }}</p>
 {% endif %}
 {% endblock content %}
+
+
