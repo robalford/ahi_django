@@ -4,7 +4,7 @@
 <br>
 <h1>{{ project }}</h1>
 <br>
-<img src="{{ project.photo.url }}" class="img-fluid">
+<img src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" class="img-fluid">
 <br>
 <div>
 <img src="{{ project.thumbnail.url }}">

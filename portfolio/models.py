@@ -6,8 +6,19 @@ from imagekit.processors import ResizeToFill, SmartResize
 
 
 class BaseImageProcessor(models.Model):
+    PORTRAIT = 'P'
+    LANDSCAPE = 'L'
+    ORIENTATION_CHOICES = (
+        (PORTRAIT, 'Portrait'),
+        (LANDSCAPE, 'Landscape')
+    )
     photo = models.ImageField(upload_to='project_photos/')
-    full_size = ImageSpecField(source='photo',
+    orientation = models.CharField(max_length=1, choices=ORIENTATION_CHOICES)
+    portrait = ImageSpecField(source='photo',
+                              processors=[SmartResize(500, 700)],
+                              format='JPEG',
+                              options={'quality': 80})
+    landscape = ImageSpecField(source='photo',
                                processors=[SmartResize(1200, 700)],
                                format='JPEG',
                                options={'quality': 80})
@@ -20,8 +31,12 @@ class BaseImageProcessor(models.Model):
     class Meta:
         abstract = True
 
+    @property
+    def is_landscape(self):
+        return self.orientation == self.LANDSCAPE
+
     def image_tag(self):
-        return mark_safe('<img src="{}" width="150" height="150" />'.format(self.photo.url))
+        return mark_safe('<img src="{}" width="150" height="100" />'.format(self.photo.url))
 
     image_tag.short_description = 'Image'
 
