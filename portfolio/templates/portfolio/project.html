@@ -1,19 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load imagekit %}
 
 {% block content %}
 <br>
 <h1>{{ project }}</h1>
 <br>
-<img src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" class="img-fluid">
+{% if project.is_landscape %}
+    {% generateimage 'portfolio:landscape' source=project.photo -- class="img-fluid" %}
+{% else %}
+    {% generateimage 'portfolio:portrait' source=project.photo -- class="img-fluid" %}
+{% endif %}
+
+{#<img src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" class="img-fluid">#}
 <br>
 <div>
-<img src="{{ project.thumbnail.url }}">
+{% generateimage 'portfolio:thumbnail' source=project.photo %}
 {% for photo in project.photos.all %}
-    <img src="{{ photo.thumbnail.url }}">
+    {% generateimage 'portfolio:thumbnail' source=photo.photo %}
 {% endfor %}
 </div>
 <br>
-
 <p>{{ project.description }}</p>
 <p><strong>Architect:</strong> {{ project.architect }}</p>
 {% if project.awards %}
