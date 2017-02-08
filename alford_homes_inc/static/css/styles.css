@@ -1,0 +1,9 @@
+/* Custom styles. Put these here until your get the SASS stuff figured out */
+
+.thumbnail {
+  margin-bottom: 5px;
+}
+
+#thumbnail-hover {
+  border: 2px solid #b94a48;
+}

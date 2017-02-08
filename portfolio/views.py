@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 
 from .models import Project, Photo
+from .imagegenerators import Portrait, Landscape, Thumbnail
 
 
 def portfolio_view(request):
@@ -13,3 +14,4 @@ def project_view(request, slug):
     project = get_object_or_404(Project, slug=slug)
     context = {'project': project}
     return render(request, 'portfolio/project.html', context)
+

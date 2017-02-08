@@ -13,9 +13,9 @@
 {#<img src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" class="img-fluid">#}
 <br>
 <div>
-{% generateimage 'portfolio:thumbnail' source=project.photo %}
+{% generateimage 'portfolio:thumbnail' source=project.photo -- class="thumbnail" %}
 {% for photo in project.photos.all %}
-    {% generateimage 'portfolio:thumbnail' source=photo.photo %}
+    {% generateimage 'portfolio:thumbnail' source=photo.photo -- class="thumbnail" %}
 {% endfor %}
 </div>
 <br>
@@ -25,5 +25,21 @@
     <p><strong>Awards:</strong> {{ project.awards }}</p>
 {% endif %}
 {% endblock content %}
+
+{% block javascript %}{{ block.super }}
+<script>
+$(function () {
+    // show thumbnail border on hover
+    $(".thumbnail").hover(
+        function () {
+            $(this).attr('id', 'thumbnail-hover');
+        },
+        function () {
+            $(this).removeAttr('id');
+        }
+    );
+});
+</script>
+{% endblock javascript %}
 
 
