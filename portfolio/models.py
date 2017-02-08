@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill, SmartResize
 
 class BasePhoto(models.Model):
     PORTRAIT = 'P'
@@ -11,6 +13,18 @@ class BasePhoto(models.Model):
     )
     photo = models.ImageField(upload_to='project_photos/')
     orientation = models.CharField(max_length=1, choices=ORIENTATION_CHOICES)
+    portrait = ImageSpecField(source='photo',
+                              processors=[SmartResize(500, 700)],
+                              format='JPEG',
+                              options={'quality': 80})
+    landscape = ImageSpecField(source='photo',
+                               processors=[SmartResize(1200, 700)],
+                               format='JPEG',
+                               options={'quality': 80})
+    thumbnail = ImageSpecField(source='photo',
+                               processors=[ResizeToFill(100, 50)],
+                               format='JPEG',
+                               options={'quality': 60})
     credit = models.CharField(max_length=100)
 
     class Meta:
