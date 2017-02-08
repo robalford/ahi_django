@@ -4,18 +4,15 @@
 <br>
 <h1>{{ project }}</h1>
 <br>
-{% if project.is_landscape %}
-    {% generateimage 'portfolio:landscape' source=project.photo -- class="img-fluid" %}
-{% else %}
-    {% generateimage 'portfolio:portrait' source=project.photo -- class="img-fluid" %}
-{% endif %}
-
-{#<img src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" class="img-fluid">#}
+<div id="main-photo">
+<img src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" class="img-fluid">
+</div>
 <br>
 <div>
-{% generateimage 'portfolio:thumbnail' source=project.photo -- class="thumbnail" %}
+<img src="{{ project.thumbnail.url }}" id="{{ project.photo }}" class="thumbnail">
 {% for photo in project.photos.all %}
-    {% generateimage 'portfolio:thumbnail' source=photo.photo -- class="thumbnail" %}
+    {# pass the processed fullsize photo url to the data attribute for jquery gallery #}
+    <img src="{{ photo.thumbnail.url }}" data-fullsize="{% if photo.is_landscape %}{{ photo.landscape.url }}{% else %}{{ photo.portrait.url }}{% endif %}" class="thumbnail">
 {% endfor %}
 </div>
 <br>
@@ -36,6 +33,15 @@ $(function () {
         },
         function () {
             $(this).removeAttr('id');
+        }
+    );
+    $(".thumbnail").on('click',
+        function () {
+            var $thumbnail = $(this);
+            $('#main-photo').html(function() {
+                // get the fullsize processed photo url from the thumbnail
+                return '<img src="' + $thumbnail.attr('data-fullsize') + '" class="img-fluid">';
+            });
         }
     );
 });
