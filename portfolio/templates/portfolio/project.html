@@ -41,8 +41,10 @@ $(function () {
             var $thumbnail = $(this);
             $('#main-photo').height($('#fullsize-photo').height()).html(function() {
                 // get the fullsize processed photo url from the thumbnail
-                return '<img src="' + $thumbnail.attr('data-fullsize') + '" class="img-fluid">';
+                return '<img src="' + $thumbnail.attr('data-fullsize') + '" id="fullsize-photo" class="img-fluid">';
             });
+            $('#fullsize-photo').hide();
+            $('#fullsize-photo').fadeIn(700);
         }
     );
 });
