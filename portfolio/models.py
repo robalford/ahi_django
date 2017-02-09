@@ -22,10 +22,6 @@ class BasePhoto(models.Model):
                                processors=[SmartResize(1110, 700)],
                                format='JPEG',
                                options={'quality': 80})
-    thumbnail = ImageSpecField(source='photo',
-                               processors=[ResizeToFill(100, 50)],
-                               format='JPEG',
-                               options={'quality': 60})
     credit = models.CharField(max_length=100)
 
     class Meta:
