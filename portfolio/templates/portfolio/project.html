@@ -49,8 +49,6 @@ $(function () {
     // carousel init. set equal img heights on all imgs, at all breakpoints.
     $('.carousel').carousel({
         interval: 0
-    }).on('slide.bs.carousel', function (e) {
-        $(e.relatedTarget).height($(this).find('.active').height());
     });
     // show carousel controls only on hover
     $('.carousel-control-next').hide();
