@@ -10,7 +10,18 @@
   float: right;
 }
 
+.controls {
+  margin-top: -40px;
+}
+
+/*Photo credit*/
+.credit {
+  font-size: 10px;
+  text-align: center;
+}
+
 /*Press*/
 .press {
   border: 1px solid rgba(0,0,0,.1);
 }
+
