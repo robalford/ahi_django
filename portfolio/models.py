@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 
+
 class BasePhoto(models.Model):
     PORTRAIT = 'P'
     LANDSCAPE = 'L'
@@ -14,11 +15,11 @@ class BasePhoto(models.Model):
     photo = models.ImageField(upload_to='project_photos/')
     orientation = models.CharField(max_length=1, choices=ORIENTATION_CHOICES)
     portrait = ImageSpecField(source='photo',
-                              processors=[SmartResize(500, 700)],
+                              processors=[ResizeToFill(500, 690)],
                               format='JPEG',
                               options={'quality': 80})
     landscape = ImageSpecField(source='photo',
-                               processors=[SmartResize(1200, 700)],
+                               processors=[ResizeToFill(1125, 700)],
                                format='JPEG',
                                options={'quality': 80})
     thumbnail = ImageSpecField(source='photo',

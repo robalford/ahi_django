@@ -1,9 +1,42 @@
 /* Custom styles. Put these here until your get the SASS stuff figured out */
 
-.thumbnail {
-  margin-bottom: 5px;
+/* Portrait orientation for carousel. Position in center of containing div */
+#project-carousel {
+  background-color: black;
 }
 
-#thumbnail-hover {
+.portrait {
+  margin:0 auto;
+}
+
+
+/* Font Awesome carousel controls. Set halfway up containing div */
+.fa-angle-left {
+  color: white;
+  margin-left: 25px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fa-angle-right {
+  color: white;
+  margin-left: 95%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Thumbnails */
+.thumbnail {
+  margin-bottom: 5px;
+  border: 2px solid white;
+}
+
+.thumbnail:hover {
+  border: 2px solid #b94a48;
+}
+
+.thumbnail-current {
   border: 2px solid #b94a48;
 }
