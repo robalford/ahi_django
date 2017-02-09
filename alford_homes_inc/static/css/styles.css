@@ -40,3 +40,8 @@
 .thumbnail-current {
   border: 2px solid #b94a48;
 }
+
+/*Press*/
+.press {
+  border: 1px solid rgba(0,0,0,.1);
+}

@@ -59,6 +59,19 @@ class Photo(BasePhoto):
         return '{} {}'.format(self.project.project, self.pk)
 
 
+class Press(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True, related_name='press')
+    citation = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='press/')
+    pdf = models.FileField(upload_to='press/', blank=True)
+    link = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.citation
+
+
+
+
 
 
 

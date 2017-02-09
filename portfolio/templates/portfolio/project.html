@@ -2,7 +2,13 @@
 
 {% block content %}
 <h2>{{ project }}</h2>
-<br>
+<hr>
+<p>{{ project.description }}</p>
+<p><strong>Architect:</strong> {{ project.architect }}</p>
+{% if project.awards %}
+    <p><strong>Awards:</strong> {{ project.awards }}</p>
+{% endif %}
+<hr>
 <div id="project-carousel" class="carousel slide">
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
@@ -35,12 +41,13 @@
     </a>
 {% endfor %}
 </div>
-<br>
-<p>{{ project.description }}</p>
-<p><strong>Architect:</strong> {{ project.architect }}</p>
-{% if project.awards %}
-    <p><strong>Awards:</strong> {{ project.awards }}</p>
-{% endif %}
+<hr>
+<p><strong>Recognition:</strong></p>
+{% for press in project.press.all %}
+    <a href="{% if press.link %}{{ press.link }}{% else %}{{ press.pdf }}{% endif %}">
+        <img src="{{ press.image.url }}" class="img-fluid press">
+    </a>
+{% endfor %}
 {% endblock content %}
 
 {% block javascript %}{{ block.super }}
