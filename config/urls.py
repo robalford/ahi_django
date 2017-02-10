@@ -8,6 +8,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from portfolio import views
+
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
@@ -20,7 +22,9 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
-    url(r'^portfolio/', include('portfolio.urls', namespace='portfolio')),
+    url(r'^portfolio/$', views.portfolio_view, name='portfolio'),
+    url(r"^portfolio/(?P<slug>[-\w]+)/$", views.project_view, name='project'),
+    url(r'^recognition/$', views.recognition_view, name='recognition'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
