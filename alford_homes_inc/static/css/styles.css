@@ -25,3 +25,11 @@
   border: 1px solid rgba(0,0,0,.1);
 }
 
+/* Bootstrap customization */
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
