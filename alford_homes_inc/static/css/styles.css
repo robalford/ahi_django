@@ -1,4 +1,12 @@
-/* Custom styles. Put these here until your get the SASS stuff figured out */
+/* Custom styles. TODO Put these here until your get the SASS stuff figured out */
+
+/*Landing Page*/
+.full-screen {
+  margin-top: -20px;
+  padding: 0;
+}
+
+/* Project Galleries */
 
 /* Font Awesome carousel controls. Set halfway up containing div */
 .fa-angle-left {
