@@ -38,37 +38,42 @@
           </button>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
+          <div class="collapse navbar-toggleable-xs pull-xs-right" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" href="{% url 'portfolio' %}">portfolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
+                <a class="nav-link" href="{% url 'recognition' %}">recognition</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">contact</a>
               </li>
             </ul>
 
-            <ul class="nav navbar-nav pull-xs-right">
-              {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-                </li>
-                <li class="nav-item">
-                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
-                </li>
-              {% endif %}
-            </ul>
+{#            <ul class="nav navbar-nav pull-xs-right">#}
+{#              {% if request.user.is_authenticated %}#}
+{#                <li class="nav-item">#}
+{#                  <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                  <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>#}
+{#                </li>#}
+{#              {% else %}#}
+{#                <li class="nav-item">#}
+{#                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>#}
+{#                </li>#}
+{#              {% endif %}#}
+{#            </ul>#}
           </div>
         </div>
       </nav>
     </div>
+
+    {% block full_screen_image %}{% endblock %}
 
     <div class="container">
 
