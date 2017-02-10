@@ -1,1 +1,23 @@
-<h1>Hello, portfolio!</h1>
+{% extends 'base.html' %}{% load imagekit %}
+{% block content %}
+<h2>Portfolio:</h2>
+<hr>
+<div class="row">
+{% for project in portfolio|dictsort:'display_order' %}
+<div class="col-sm-6">
+<a href="{% url 'project' project.slug %}">
+<div class="card">
+    {% thumbnail '600x400' project.photo -- class="card-img-top img-fluid" alt="{{ project.project }} photo"%}
+<div class="card-block">
+    <h4 class="card-title">{{ project.project }}</h4>
+    <p class="card-text">{{ project.description }}</p>
+</div>
+</div>
+</a>
+</div>
+
+
+{% endfor %}
+</div> <!-- row --!>
+{% endblock content %}
+
