@@ -40,6 +40,7 @@ class BasePhoto(models.Model):
 class Project(BasePhoto):
     project = models.CharField(max_length=100)
     slug = models.SlugField()
+    display_order = models.IntegerField()
     description = models.TextField()
     architect = models.CharField(max_length=100)
     awards = models.TextField(blank=True)
@@ -58,9 +59,13 @@ class Photo(BasePhoto):
 class Press(models.Model):
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True, related_name='press')
     citation = models.CharField(max_length=200)
+    display_order = models.IntegerField()
     image = models.ImageField(upload_to='press/')
     pdf = models.FileField(upload_to='press/', blank=True)
     link = models.URLField(blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Press'
 
     def __str__(self):
         return self.citation
