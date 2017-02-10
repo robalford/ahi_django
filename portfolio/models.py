@@ -58,8 +58,16 @@ class Photo(BasePhoto):
 
 
 class Press(models.Model):
+    BOOK = 'B'
+    MAGAZINE = 'M'
+    PUBLICATION_TYPE_CHOICES = (
+        (BOOK, 'Book'),
+        (MAGAZINE, 'Magazine')
+    )
+    # TODO this should really be m2m in case multiple projects are in there
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True, related_name='press')
     citation = models.CharField(max_length=200)
+    publication_type = models.CharField(max_length=1, choices=PUBLICATION_TYPE_CHOICES)
     display_order = models.IntegerField()
     image = models.ImageField(upload_to='press/')
     pdf = models.FileField(upload_to='press/', blank=True)

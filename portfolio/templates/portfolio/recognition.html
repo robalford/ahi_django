@@ -1,0 +1,32 @@
+{% extends 'base.html' %}{% load imagekit %}
+{% block content %}
+<h2>Magazines:</h2>
+<hr>
+{# TODO use includes here to be more DRY #}
+<div class="row">
+{% for recognition in press|dictsort:'display_order' %}
+{% if recognition.publication_type == 'M' %}
+<div class="col-sm-4">
+<a href="{% if recognition.link %}{{ recognition.link }}{% else %}{{ recognition.pdf }}{% endif %}" target="_blank">
+    {% thumbnail '400x600' recognition.image -- class="card-img-top img-fluid press" alt="{{ recognition.citation }}" %}
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+<br>
+
+<h2>Books:</h2>
+<hr>
+<div class="row">
+{% for recognition in press|dictsort:'display_order' %}
+{% if recognition.publication_type == 'B' %}
+<div class="col-sm-4">
+<a href="{% if recognition.link %}{{ recognition.link }}{% else %}{{ recognition.pdf.url }}{% endif %}" target="_blank">
+    {% thumbnail '400x600' recognition.image -- class="card-img-top img-fluid press" alt="{{ recognition.citation }}" %}
+</a>
+</div>
+{% endif %}
+{% endfor %}
+</div> <!-- row --!>
+{% endblock content %}
