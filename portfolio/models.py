@@ -14,6 +14,7 @@ class BasePhoto(models.Model):
     )
     photo = models.ImageField(upload_to='project_photos/')
     orientation = models.CharField(max_length=1, choices=ORIENTATION_CHOICES)
+    display_order = models.IntegerField()
     portrait = ImageSpecField(source='photo',
                               processors=[SmartResize(500, 700), ResizeCanvas(1110, 700, color='black')],
                               format='JPEG',
