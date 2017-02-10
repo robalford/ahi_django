@@ -12,6 +12,7 @@ class PhotoInline(admin.TabularInline):
         'image_tag',
         'photo',
         'orientation',
+        'display_order',
         'credit',
     )
 
@@ -20,6 +21,7 @@ class ProjectAdmin(admin.ModelAdmin):
     fields = (
         'project',
         'slug',
+        'display_order',
         'photo',
         'image_tag',
         'orientation',
