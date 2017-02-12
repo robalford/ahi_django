@@ -1,13 +1,13 @@
 {% extends 'base.html' %}{% load imagekit %}
 
 {% block content %}
-<h2>{{ project }}</h2>
+<h2>{{ project.title }}</h2>
 <hr>
 <div id="project-carousel" class="carousel slide">
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img class="d-block img-fluid {% if not project.is_landscape %}portrait{% endif %}" src="{% if project.is_landscape %}{{ project.landscape.url }}{% else %}{{ project.portrait.url }}{% endif %}" alt="Slide 1">
-        <p class="credit">Photo by: {{ project.credit }}</p>
+      <img class="d-block img-fluid" src="{{ project.project_photo.url }}" alt="Slide 1">
+        <p class="credit">Photo by: {{ project.photo_credit }}</p>
     </div>
     {% for photo in project.photos.all %}
     <div class="carousel-item">
@@ -40,7 +40,6 @@
 {#    </a>#}
 {#{% endfor %}#}
 {#</div>#}
-<p>{{ project.description }}</p>
 <p><strong>Architect:</strong> {{ project.architect }}</p>
 {% if project.awards %}
     <p><strong>Awards:</strong> {{ project.awards }}</p>

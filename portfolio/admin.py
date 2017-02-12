@@ -1,16 +1,28 @@
 from django.contrib import admin
 
-from .models import Project, Photo, Press
+from imagekit.admin import AdminThumbnail
+
+from .models import LandingPage, AboutPage, Project, Photo, Press
+
+
+class LandingPageAdmin(admin.ModelAdmin):
+    admin_thumbnail = AdminThumbnail(image_field='thumbnail')
+    list_display = ('__str__', 'admin_thumbnail')
+    readonly_fields = (
+        'admin_thumbnail',
+    )
 
 
 class PhotoInline(admin.TabularInline):
     model = Photo
+    admin_thumbnail = AdminThumbnail(image_field='thumbnail')
+    list_display = ('__str__', 'admin_thumbnail')
     readonly_fields = (
-        'image_tag',
+        'admin_thumbnail',
     )
     fields = (
-        'image_tag',
         'photo',
+        'admin_thumbnail',
         'orientation',
         'display_order',
         'credit',
@@ -18,26 +30,29 @@ class PhotoInline(admin.TabularInline):
 
 
 class ProjectAdmin(admin.ModelAdmin):
+    admin_thumbnail = AdminThumbnail(image_field='thumbnail')
+    list_display = ('__str__', 'admin_thumbnail')
+    readonly_fields = (
+        'admin_thumbnail',
+    )
     fields = (
-        'project',
+        'title',
         'slug',
         'display_order',
         'photo',
-        'image_tag',
-        'orientation',
-        'credit',
-        'description',
+        'admin_thumbnail',
+        'photo_credit',
+        'text',
         'architect',
         'awards',
     )
-    prepopulated_fields = {"slug": ("project",)}
-    readonly_fields = (
-        'image_tag',
-    )
+    prepopulated_fields = {"slug": ("title",)}
     inlines = [
         PhotoInline,
     ]
 
+admin.site.register(LandingPage, LandingPageAdmin)
+admin.site.register(AboutPage)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Press)
 

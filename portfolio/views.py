@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 
-from .models import Project, Photo, Press
-from .imagegenerators import Portrait, Landscape, Thumbnail
+from .models import Project, Press
 
 
 def portfolio_view(request):
